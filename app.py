@@ -30,20 +30,25 @@ def main():
             time.sleep(2.0)
             fps.start()
 
+            cnt = -1
             # loop detection
+            results = None
             while True:
+                cnt += 1
                 frame = video_stream.read()
-                results = pose_estimator.estimate(frame)
-                # Generate text to display on streamer
-                text = ["Model: {}".format(pose_estimator.model_id)]
-                text.append(
-                        "Inference time: {:1.3f} s".format(results.duration))
-                for ind, pose in enumerate(results.poses):
-                    text.append("Person {}".format(ind))
-                    text.append('-'*10)
-                    text.append("Key Points:")
-                    for key_point in pose.key_points:
-                        text.append(str(key_point))
+                if cnt == 10:
+                    results = pose_estimator.estimate(frame)
+                    # Generate text to display on streamer
+                    text = ["Model: {}".format(pose_estimator.model_id)]
+                    text.append(
+                            "Inference time: {:1.3f} s".format(results.duration))
+                    for ind, pose in enumerate(results.poses):
+                        text.append("Person {}".format(ind))
+                        text.append('-'*10)
+                        text.append("Key Points:")
+                        for key_point in pose.key_points:
+                            text.append(str(key_point))
+                    cnt = 0
                 streamer.send_data(results.draw_poses(frame), text)
 
                 fps.update()
