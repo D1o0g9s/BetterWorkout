@@ -27,29 +27,29 @@ def main():
 
     # Create left and right dataframes 
     user1_right_dict = dict()
-    user1_right_dict["timestamp"] = 0 # Time in millis
-    user1_right_dict["wrist_y"] = 0
-    user1_right_dict["elbow_y"] = 0
-    user1_right_dict["shoulder_y"] = 0
+    user1_right_dict["timestamp"] = [0] # Time in millis
+    user1_right_dict["wrist_y"] = [0]
+    user1_right_dict["elbow_y"] = [0]
+    user1_right_dict["shoulder_y"] = [0]
 
-    user1_right_dict["wrist_x"] = 0 
-    user1_right_dict["elbow_x"] = 0 
-    user1_right_dict["shoulder_x"] = 0 
+    user1_right_dict["wrist_x"] = [0] 
+    user1_right_dict["elbow_x"] = [0] 
+    user1_right_dict["shoulder_x"] = [0] 
 
     user1_left_dict = dict()
-    user1_right_dict["timestamp"] = 0 # Time in millis
-    user1_left_dict["wrist_y"] = 0
-    user1_left_dict["elbow_y"] = 0
-    user1_left_dict["shoulder_y"] = 0
+    user1_right_dict["timestamp"] = [0] # Time in millis
+    user1_left_dict["wrist_y"] = [0]
+    user1_left_dict["elbow_y"] = [0]
+    user1_left_dict["shoulder_y"] = [0]
 
-    user1_left_dict["wrist_x"] = 0
-    user1_left_dict["elbow_x"] = 0
-    user1_left_dict["shoulder_x"] = 0
+    user1_left_dict["wrist_x"] = [0]
+    user1_left_dict["elbow_x"] = [0]
+    user1_left_dict["shoulder_x"] = [0]
 
-    user1_right_df = pd.DataFrame.from_dict(user1_right_dict, index=0)
+    user1_right_df = pd.DataFrame.from_dict(user1_right_dict)
     user1_right_df.set_index('timestamp', inplace=True)
     user1_left_df = pd.DataFrame.from_dict(user1_left_dict)
-    user1_left_df.set_index('timestamp', inplace=True, index=0)
+    user1_left_df.set_index('timestamp', inplace=True)
 
     try:
         with edgeiq.WebcamVideoStream(cam=0) as video_stream, \
@@ -96,29 +96,29 @@ def main():
                         left_shoulder_y = pose.key_points[5][1]
                         left_shoulder_x = pose.key_points[5][0]
 
-                        user1_right_dict["timestamp"] = millis
+                        user1_right_dict["timestamp"] = [millis]
                         
-                        user1_right_dict["wrist_y"] = right_wrist_y
-                        user1_right_dict["elbow_y"] = right_elbow_y
-                        user1_right_dict["shoulder_y"] = right_shoulder_y
+                        user1_right_dict["wrist_y"] = [right_wrist_y]
+                        user1_right_dict["elbow_y"] = [right_elbow_y]
+                        user1_right_dict["shoulder_y"] = [right_shoulder_y]
 
-                        user1_right_dict["wrist_x"] = right_wrist_x
-                        user1_right_dict["elbow_x"] = right_elbow_x
-                        user1_right_dict["shoulder_x"] = right_shoulder_x
+                        user1_right_dict["wrist_x"] = [right_wrist_x]
+                        user1_right_dict["elbow_x"] = [right_elbow_x]
+                        user1_right_dict["shoulder_x"] = [right_shoulder_x]
 
 
-                        user1_left_dict["timestamp"] = millis
-                        user1_left_dict["wrist_y"] = left_wrist_y
-                        user1_left_dict["elbow_y"] = left_elbow_y
-                        user1_left_dict["shoulder_y"] = left_shoulder_y
+                        user1_left_dict["timestamp"] = [millis]
+                        user1_left_dict["wrist_y"] = [left_wrist_y]
+                        user1_left_dict["elbow_y"] = [left_elbow_y]
+                        user1_left_dict["shoulder_y"] = [left_shoulder_y]
 
-                        user1_left_dict["wrist_x"] = left_wrist_x
-                        user1_left_dict["elbow_x"] = left_elbow_x
-                        user1_left_dict["shoulder_x"] = left_shoulder_x
+                        user1_left_dict["wrist_x"] = [left_wrist_x]
+                        user1_left_dict["elbow_x"] = [left_elbow_x]
+                        user1_left_dict["shoulder_x"] = [left_shoulder_x]
 
-                        user1_right_df2 = pd.DataFrame.from_dict(user1_right_dict, index=millis)
+                        user1_right_df2 = pd.DataFrame.from_dict(user1_right_dict)
                         user1_right_df2.set_index('timestamp', inplace=True)
-                        user1_left_df2 = pd.DataFrame.from_dict(user1_left_dict, index=millis)
+                        user1_left_df2 = pd.DataFrame.from_dict(user1_left_dict)
                         user1_left_df2.set_index('timestamp', inplace=True)
 
                         user1_right_df = pd.concat([user1_right_df, user1_right_df2])
