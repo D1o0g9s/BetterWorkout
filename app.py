@@ -47,9 +47,9 @@ def main():
     user1_left_dict["shoulder_x"] = [0]
 
     user1_right_df = pd.DataFrame.from_dict(user1_right_dict)
-    user1_right_df.set_index('timestamp', inplace=True)
+    #user1_right_df.set_index('timestamp', inplace=True)
     user1_left_df = pd.DataFrame.from_dict(user1_left_dict)
-    user1_left_df.set_index('timestamp', inplace=True)
+    #user1_left_df.set_index('timestamp', inplace=True)
 
     try:
         with edgeiq.WebcamVideoStream(cam=0) as video_stream, \
@@ -117,9 +117,9 @@ def main():
                         user1_left_dict["shoulder_x"] = [left_shoulder_x]
 
                         user1_right_df2 = pd.DataFrame.from_dict(user1_right_dict)
-                        user1_right_df2.set_index('timestamp', inplace=True)
+                        #user1_right_df2.set_index('timestamp', inplace=True)
                         user1_left_df2 = pd.DataFrame.from_dict(user1_left_dict)
-                        user1_left_df2.set_index('timestamp', inplace=True)
+                        #user1_left_df2.set_index('timestamp', inplace=True)
 
                         user1_right_df = pd.concat([user1_right_df, user1_right_df2])
                         user1_left_df = pd.concat([user1_left_df, user1_left_df2])
