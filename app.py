@@ -46,9 +46,9 @@ def main():
     user1_left_dict["elbow_x"] = 0
     user1_left_dict["shoulder_x"] = 0
 
-    user1_right_df = pd.DataFrame.from_dict(user1_right_dict, index=None)
+    user1_right_df = pd.DataFrame.from_dict(user1_right_dict)
     user1_right_df.set_index('timestamp', inplace=True)
-    user1_left_df = pd.DataFrame.from_dict(user1_left_dict, index=None)
+    user1_left_df = pd.DataFrame.from_dict(user1_left_dict)
     user1_left_df.set_index('timestamp', inplace=True)
 
     try:
