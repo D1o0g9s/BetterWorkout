@@ -101,7 +101,7 @@ def main():
                                 left_shoulder_y = pose.key_points["Left Shoulder"][1]
                                 left_shoulder_x = pose.key_points["Left Shoulder"][0]
 
-                                user1_right_dict["timestamp"] = [millis]
+                                # user1_right_dict["timestamp"] = [millis]
                                 
                                 user1_right_dict["wrist_y"] = [right_wrist_y]
                                 user1_right_dict["elbow_y"] = [right_elbow_y]
@@ -112,7 +112,7 @@ def main():
                                 user1_right_dict["shoulder_x"] = [right_shoulder_x]
 
 
-                                user1_left_dict["timestamp"] = [millis]
+                                # user1_left_dict["timestamp"] = [millis]
                                 user1_left_dict["wrist_y"] = [left_wrist_y]
                                 user1_left_dict["elbow_y"] = [left_elbow_y]
                                 user1_left_dict["shoulder_y"] = [left_shoulder_y]
