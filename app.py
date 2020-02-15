@@ -30,7 +30,7 @@ def main():
             time.sleep(2.0)
             fps.start()
 
-            cnt = -1
+            cnt = 9
             # loop detection
             results = None
             while True:
