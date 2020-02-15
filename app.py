@@ -82,19 +82,19 @@ def main():
                         time_elapsed += millis - prevMillis
 
 
-                        right_wrist_y = pose.key_points[4][1]
-                        right_wrist_x = pose.key_points[4][0]
-                        right_elbow_y = pose.key_points[3][1]
-                        right_elbow_x = pose.key_points[3][0]
-                        right_shoulder_y = pose.key_points[2][1]
-                        right_shoulder_x = pose.key_points[2][0]
+                        right_wrist_y = pose.key_points["Right Wrist"][1]
+                        right_wrist_x = pose.key_points["Right Wrist"][0]
+                        right_elbow_y = pose.key_points["Right Elbow"][1]
+                        right_elbow_x = pose.key_points["Right Elbow"][0]
+                        right_shoulder_y = pose.key_points["Right Shoulder"][1]
+                        right_shoulder_x = pose.key_points["Right Shoulder"][0]
 
-                        left_wrist_y = pose.key_points[7][1]
-                        left_wrist_x = pose.key_points[7][0]
-                        left_elbow_y = pose.key_points[6][1]
-                        left_elbow_x = pose.key_points[6][0]
-                        left_shoulder_y = pose.key_points[5][1]
-                        left_shoulder_x = pose.key_points[5][0]
+                        left_wrist_y = pose.key_points["Left Wrist"][1]
+                        left_wrist_x = pose.key_points["Left Wrist"][0]
+                        left_elbow_y = pose.key_points["Left Elbow"][1]
+                        left_elbow_x = pose.key_points["Left Elbow"][0]
+                        left_shoulder_y = pose.key_points["Left Shoulder"][1]
+                        left_shoulder_x = pose.key_points["Left Shoulder"][0]
 
                         user1_right_dict["timestamp"] = [millis]
                         
