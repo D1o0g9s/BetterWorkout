@@ -19,7 +19,7 @@ accelerator.
 top_arm_image = cv2.imread('./images/top.png')
 top_arm_image_width = top_arm_image.shape[1]
 top_arm_image_height = top_arm_image.shape[0]
-top_ratio = 10
+top_ratio = 15
 current_top_dimensions = (top_arm_image_width//top_ratio, top_arm_image_height//top_ratio)
 current_top_image = cv2.resize(top_arm_image, current_top_dimensions)
 
@@ -28,7 +28,7 @@ top_y_start = 0
 
 top_x_start = 0
 #top_x_end = 0
-bot_ratio = 5
+bot_ratio = 3
 NUM_BOT_IMAGES = 79
 current_bot_image_index = 0
 bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
@@ -61,11 +61,11 @@ def showTopArm(frame):
     y_end = top_y_start + height 
     y_end = (y_end if ((y_end > 0) and (y_end < frame.shape[0])) else 0)
 
-
     x_start = (top_x_start if ((top_x_start > 0) and (top_x_start < frame.shape[1])) else 0)
     x_end = top_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
     print("height", height, "width", width)
+
     toPutImage = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
     toPutFrame = frame[y_start:y_end, x_start:x_end]
     
