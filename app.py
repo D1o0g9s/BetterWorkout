@@ -357,8 +357,8 @@ def main():
 
         print("Program Ending")
         
-        global existingThread
         if not (existingThread is None):
+            global existingThread
             existingThread.join()
 
 
