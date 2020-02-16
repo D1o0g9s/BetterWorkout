@@ -336,10 +336,10 @@ def main():
                 
                 # Only calculate / update pose every 10 cycles 
                 if cnt == 10:
+                    cnt = 0
                     global existingThread
                     if not (existingThread is None):
                         existingThread.join()
-                        cnt = 0
                     existingThread = threading.Thread(target=estimatePoses, args=(streamer, pose_estimator,frame))
                     existingThread.start()
                 else : 
@@ -357,9 +357,9 @@ def main():
 
         print("Program Ending")
         
-        if not (existingThread is None):
-            global existingThread
-            existingThread.join()
+        # if not (existingThread is None):
+        #     global existingThread
+        #     existingThread.join()
 
 
 if __name__ == "__main__":
