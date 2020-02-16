@@ -211,13 +211,17 @@ def main():
                             updateTopArmImageAndLocation(right_shoulder_x, right_shoulder_y, right_elbow_x, right_elbow_y)
                             updateBotArmImageAndLocation(right_wrist_x, right_wrist_y, right_elbow_x, right_elbow_y)
 
-                            user1_right_dict["wrist_y"] = [right_wrist_y]
-                            user1_right_dict["elbow_y"] = [right_elbow_y]
-                            user1_right_dict["shoulder_y"] = [right_shoulder_y]
+                            user1_right_dict = dict()
+                            user1_right_dict["wrist_y"] = right_wrist_y
+                            user1_right_dict["elbow_y"] = right_elbow_y
+                            user1_right_dict["shoulder_y"] = right_shoulder_y
 
-                            user1_right_dict["wrist_x"] = [right_wrist_x]
-                            user1_right_dict["elbow_x"] = [right_elbow_x]
-                            user1_right_dict["shoulder_x"] = [right_shoulder_x]
+                            user1_right_dict["wrist_x"] = right_wrist_x
+                            user1_right_dict["elbow_x"] = right_elbow_x
+                            user1_right_dict["shoulder_x"] = right_shoulder_x
+
+                            print("right arm data")
+                            print(user1_right_dict)
 
                             # left_wrist_y = pose.key_points["Left Wrist"][1]
                             # left_wrist_x = pose.key_points["Left Wrist"][0]
@@ -244,8 +248,7 @@ def main():
                             # user1_right_df = pd.concat([user1_right_df, user1_right_df2])
                             # user1_left_df = pd.concat([user1_left_df, user1_left_df2])
 
-                            # print("right arm data")
-                            # print(user1_right_dict)
+                            
 
                             # text.append("Person {}".format(ind))
                             # text.append('-'*10)
