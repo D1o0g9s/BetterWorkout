@@ -306,7 +306,7 @@ def main():
             time.sleep(2.0)
             fps.start()
 
-            cnt = 9
+            cnt = 19
 
             # For debugging purposes
             prevMillis= 0
@@ -315,7 +315,7 @@ def main():
 
             # loop detection
             while True:
-                time.sleep(0.02)
+                time.sleep(0.01)
                 cnt += 1
                 frame = video_stream.read()
 
@@ -335,7 +335,7 @@ def main():
                     frame = showTopArm(frame)
                 
                 # Only calculate / update pose every 10 cycles 
-                if cnt == 10:
+                if cnt == 20:
                     cnt = 0
                     global existingThread
                     if not (existingThread is None):
