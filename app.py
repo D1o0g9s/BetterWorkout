@@ -100,8 +100,8 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     #top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
     # print("top angle", top_angle)
     #new_image = imutils.rotate_bound(new_image, top_angle)
-    global current_top_image 
-    current_top_image = new_image
+    # global current_top_image 
+    # current_top_image = new_image
 
     # Calculate the offsets we need to add to the image when we overlay the new image on
     #height_to_inc = abs((0.5 * new_width))# * math.sin(top_angle))
