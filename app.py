@@ -66,6 +66,7 @@ def showTopArm(frame):
     x_end = top_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
 
+    print("top y_start:", y_start, "y_end", y_end, "x_start", x_start, "x_end", x_end)
     frame[y_start:y_end, x_start:x_end] = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
     return frame
 
@@ -130,8 +131,6 @@ def showCurBotImage(frame):
     # Display the bottom image
     width = current_bot_image.shape[1]
     height = current_bot_image.shape[0]
-    print("frame image shape:", frame.shape)
-    print("current_bot_image:", current_bot_image.shape)
 
     y_start = (bot_y_start if ((bot_y_start > 0) and (bot_y_start < frame.shape[0])) else 0)
     y_end = bot_y_start + height 
@@ -141,6 +140,8 @@ def showCurBotImage(frame):
     x_start = (bot_x_start if ((bot_x_start > 0) and (bot_x_start < frame.shape[1])) else 0)
     x_end = bot_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
+
+    print("bot y_start:", y_start, "y_end", y_end, "x_start", x_start, "x_end", x_end)
 
     frame[y_start:y_end, x_start:x_end] = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
     return frame
