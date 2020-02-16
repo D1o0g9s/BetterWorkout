@@ -19,7 +19,9 @@ accelerator.
 top_arm_image = cv2.imread('./images/top.png')
 top_arm_image_width = top_arm_image.shape[1]
 top_arm_image_height = top_arm_image.shape[0]
-current_top_image = None
+
+current_top_dimensions = (top_arm_image_width//5, top_arm_image_height//5)
+current_top_image = cv2.resize(top_arm_image, current_top_dimensions)
 
 top_y_start = 0
 #top_y_end = 0
@@ -32,8 +34,8 @@ current_bot_image_index = 0
 bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
 bot_arm_image_width = bot_arm_image.shape[1]
 bot_arm_image_height = bot_arm_image.shape[0]
-current_bot_dimensions = (1,1)
-current_bot_image = None
+current_bot_dimensions = (bot_arm_image_width//5, bot_arm_image_width//5)
+current_bot_image = cv2.resize(bot_arm_image, current_bot_dimensions)
 
 bot_y_start = 0
 #bot_y_end = 0
@@ -94,7 +96,7 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
 
     new_dimensions = (new_width, new_height)
 
-    new_image = top_arm_image #cv2.resize(top_arm_image, new_dimensions)
+    #new_image = cv2.resize(top_arm_image, new_dimensions)
     #top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
     # print("top angle", top_angle)
     #new_image = imutils.rotate_bound(new_image, top_angle)
@@ -165,7 +167,7 @@ def updateBotArm():
     current_bot_image_index = (current_bot_image_index + 1) % NUM_BOT_IMAGES
     global bot_arm_image
     bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
-    new_image = bot_arm_image#cv2.resize(bot_arm_image, current_bot_dimensions)
+    new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
     if not(current_bot_image is None) :
         current_bot_image = new_image
@@ -189,12 +191,8 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
         return 
     
     new_dimensions = (new_width, new_height) 
-    global current_bot_dimensions
-    current_bot_dimensions = new_dimensions
-    global current_bot_image
-    if not (current_bot_image is None) :
-        new_image = bot_arm_image#cv2.resize(bot_arm_image, current_bot_dimensions)
-        current_bot_image = new_image
+    # global current_bot_dimensions
+    # current_bot_dimensions = new_dimensions
     
     # new_y_start = int(elbow_y - new_height)
     # new_x_start = int(elbow_x)
