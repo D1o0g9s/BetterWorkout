@@ -62,7 +62,7 @@ def showTopArm(frame):
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
 
     toPutImage = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
-    toPutFrame = frame[y_start:y_end, x_start:x_end]
+    #toPutFrame = frame[y_start:y_end, x_start:x_end]
     
     #out = np.where(toPutImage == [0, 0, 0], toPutFrame, toPutImage)
 
@@ -139,7 +139,7 @@ def showCurBotImage(frame):
 
     print("bot y_start:", y_start, "y_end", y_end, "x_start", x_start, "x_end", x_end)
     toPutImage = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
-    toPutFrame = frame[y_start:y_end, x_start:x_end]
+    #toPutFrame = frame[y_start:y_end, x_start:x_end]
 
     #out = np.where(toPutImage == [0, 0, 0], toPutFrame, toPutImage)
 
