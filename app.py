@@ -49,7 +49,10 @@ def angle(top_x, top_y, bot_x, bot_y):
 
 def showTopArm(frame):
     # Displays the current top image at the current top calculated location
-    frame[top_y_start:top_y_end, top_x_start:top_x_end] = current_top_image
+    width = current_top_image.shape[1]
+    height = current_top_image.shape[0]
+    print("curr top image shape:", current_top_image.shape)
+    frame[top_y_start:top_y_start - height, top_x_start:top_x_start + width] = current_top_image
     return frame
 
 
