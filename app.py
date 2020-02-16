@@ -196,9 +196,9 @@ def main():
                     updateBotArm()
 
                 # If there is a current image, display it! 
-                if current_bot_image is not None:
+                if not (current_bot_image is None):
                     frame = showCurBotImage(frame)
-                if current_top_image is not None:
+                if not (current_top_image is None):
                     frame = showTopArm(frame)
                 
                 # Only calculate / update pose every 10 cycles 
