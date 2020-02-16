@@ -105,7 +105,7 @@ def showCurBotImage(frame):
     frame[bot_y_start:bot_y_end, bot_x_start:bot_x_end] = current_bot_image
     return frame
 
-def updateBotArm(frame):
+def updateBotArm():
     # Update the bot image
     global current_bot_image_index
     current_bot_image_index = (current_bot_image_index + 1) % NUM_BOT_IMAGES
@@ -182,7 +182,6 @@ def main():
                 # Grab updated image 
                 if time_elapsed >= 33.3333:
                     time_elapsed = 0 
-                    
                     updateBotArm()
 
                 # If there is a current image, display it! 
