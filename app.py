@@ -263,13 +263,10 @@ def estimatePoses(streamer, pose_estimator, frame):
             if not skip: 
                 updateTopArmImageAndLocation(user1_dict["shoulder_x"], user1_dict["shoulder_y"], user1_dict["elbow_x"], user1_dict["elbow_y"])
                 updateBotArmImageAndLocation(user1_dict["wrist_x"], user1_dict["wrist_y"], user1_dict["elbow_x"], user1_dict["elbow_y"])
-            else :
-                cnt = 10
+
             print("one arm data")
             print(user1_dict)
 
-            
-            streamer.send_data(results.draw_poses(frame), "Thread done!")
             # user1_right_df2 = pd.DataFrame.from_dict(user1_right_dict)
             # #user1_right_df2.set_index('timestamp', inplace=True)
             # user1_left_df2 = pd.DataFrame.from_dict(user1_left_dict)
@@ -342,8 +339,8 @@ def main():
                         existingThread.join()
                     existingThread = threading.Thread(target=estimatePoses, args=(streamer, pose_estimator,frame))
                     existingThread.start()
-                else : 
-                    streamer.send_data(frame, "")
+                
+                streamer.send_data(frame, "")
 
                 fps.update()
 
