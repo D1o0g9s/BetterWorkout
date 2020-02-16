@@ -63,7 +63,7 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
         new_width = 1
     if new_height <= 0:
         new_height = 1
-        
+
     new_dimensions = (new_width, new_height)
 
     new_image = cv2.resize(top_arm_image, new_dimensions)
@@ -195,9 +195,9 @@ def main():
                     updateBotArm()
 
                 # If there is a current image, display it! 
-                if not current_bot_image:
+                if current_bot_image is not None:
                     frame = showCurBotImage(frame)
-                if not current_top_image:
+                if current_top_image is not None:
                     frame = showTopArm(frame)
                 
                 # Only calculate / update pose every 10 cycles 
