@@ -52,6 +52,7 @@ def showTopArm(frame):
     width = current_top_image.shape[1]
     height = current_top_image.shape[0]
     print("curr top image shape:", current_top_image.shape)
+    print("frame image shape:", frame.shape)
     frame[top_y_start:top_y_start + height, top_x_start:top_x_start + width] = current_top_image
     return frame
 
