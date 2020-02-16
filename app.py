@@ -117,6 +117,7 @@ def updateBotArm():
     current_bot_image_index = (current_bot_image_index + 1) % NUM_BOT_IMAGES
     global bot_arm_image
     bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
+    print(current_bot_dimensions)
     new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
     current_bot_image = new_image
