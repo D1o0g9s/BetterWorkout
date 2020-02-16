@@ -326,10 +326,11 @@ def main():
                 #     updateBotArm()
 
                 # If there is a current image, display it! 
-                # if not (current_bot_image is None):
-                #     frame = showCurBotImage(frame)
-                if not (current_top_image is None):
-                    frame = showTopArm(frame)
+                if (cnt % 5 == 0):
+                    if not (current_bot_image is None):
+                        frame = showCurBotImage(frame)
+                    if not (current_top_image is None):
+                        frame = showTopArm(frame)
                 
                 # Only calculate / update pose every 10 cycles 
                 if cnt == 10:
