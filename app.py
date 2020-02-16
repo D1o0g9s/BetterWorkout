@@ -94,7 +94,7 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
 
     new_dimensions = (new_width, new_height)
 
-    new_image = cv2.resize(top_arm_image, new_dimensions)
+    new_image = top_arm_image #cv2.resize(top_arm_image, new_dimensions)
     #top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
     # print("top angle", top_angle)
     #new_image = imutils.rotate_bound(new_image, top_angle)
@@ -165,7 +165,7 @@ def updateBotArm():
     current_bot_image_index = (current_bot_image_index + 1) % NUM_BOT_IMAGES
     global bot_arm_image
     bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
-    new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
+    new_image = bot_arm_image#cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
     if not(current_bot_image is None) :
         current_bot_image = new_image
@@ -193,7 +193,7 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
     current_bot_dimensions = new_dimensions
     global current_bot_image
     if not (current_bot_image is None) :
-        new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
+        new_image = bot_arm_image#cv2.resize(bot_arm_image, current_bot_dimensions)
         current_bot_image = new_image
     
     # new_y_start = int(elbow_y - new_height)
