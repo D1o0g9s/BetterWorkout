@@ -135,7 +135,8 @@ def updateBotArm():
     print("current bot dimensions", current_bot_dimensions)
     new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
-    current_bot_image = new_image
+    if not(current_bot_image is None) :
+        current_bot_image = new_image
 
 def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y): 
     # Update the bottom image and location (doesn't actually display it though)
@@ -189,7 +190,7 @@ def main():
             time.sleep(2.0)
             fps.start()
 
-            cnt = 9
+            cnt = 4
 
             # For debugging purposes
             prevMillis= 0
@@ -218,7 +219,8 @@ def main():
                     frame = showTopArm(frame)
                 
                 # Only calculate / update pose every 10 cycles 
-                if cnt == 10:
+                if cnt == 5:
+                    cnt = 0
                     results = pose_estimator.estimate(frame)
                     # Generate text to display on streamer
                     text = ["Model: {}".format(pose_estimator.model_id)]
@@ -251,7 +253,8 @@ def main():
                             if not skip: 
                                 updateTopArmImageAndLocation(right_shoulder_x, right_shoulder_y, right_elbow_x, right_elbow_y)
                                 updateBotArmImageAndLocation(right_wrist_x, right_wrist_y, right_elbow_x, right_elbow_y)
-
+                            else :
+                                cnt = 4
                             print("right arm data")
                             print(user1_right_dict)
 
@@ -287,7 +290,7 @@ def main():
                             # text.append("Key Points:")
                             # for key_point in pose.key_points:
                             #     text.append(str(key_point))
-                    cnt = 0
+                    
                 streamer.send_data(results.draw_poses(frame), text)
 
                 fps.update()
