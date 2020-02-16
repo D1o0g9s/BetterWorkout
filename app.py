@@ -232,9 +232,6 @@ def main():
                             right_shoulder_y = pose.key_points["Right Shoulder"][1]
                             right_shoulder_x = pose.key_points["Right Shoulder"][0]
 
-                            updateTopArmImageAndLocation(right_shoulder_x, right_shoulder_y, right_elbow_x, right_elbow_y)
-                            updateBotArmImageAndLocation(right_wrist_x, right_wrist_y, right_elbow_x, right_elbow_y)
-
                             user1_right_dict = dict()
                             user1_right_dict["wrist_y"] = right_wrist_y
                             user1_right_dict["elbow_y"] = right_elbow_y
@@ -243,6 +240,13 @@ def main():
                             user1_right_dict["wrist_x"] = right_wrist_x
                             user1_right_dict["elbow_x"] = right_elbow_x
                             user1_right_dict["shoulder_x"] = right_shoulder_x
+                            skip = False
+                            for key in user1_right_dict.keys:
+                                if user1_right_dict[key] < 0 : 
+                                    skip = True
+                            if not skip: 
+                                updateTopArmImageAndLocation(right_shoulder_x, right_shoulder_y, right_elbow_x, right_elbow_y)
+                                updateBotArmImageAndLocation(right_wrist_x, right_wrist_y, right_elbow_x, right_elbow_y)
 
                             print("right arm data")
                             print(user1_right_dict)
