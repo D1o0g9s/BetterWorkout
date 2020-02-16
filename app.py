@@ -306,7 +306,7 @@ def main():
             time.sleep(2.0)
             fps.start()
 
-            cnt = 45
+            cnt = 95
 
             # For debugging purposes
             prevMillis= 0
@@ -335,7 +335,7 @@ def main():
                     frame = showTopArm(frame)
                 
                 # Only calculate / update pose every 10 cycles 
-                if cnt == 50:
+                if cnt == 100:
                     cnt = 0
                     global existingThread
                     if not (existingThread is None):
