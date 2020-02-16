@@ -273,9 +273,6 @@ def main():
                             # for key_point in pose.key_points:
                             #     text.append(str(key_point))
                     cnt = 0
-                else :
-                    if not current_top_image:
-                        frame = showTopArm(frame)
                 streamer.send_data(results.draw_poses(frame), text)
 
                 fps.update()
