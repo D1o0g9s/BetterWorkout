@@ -181,8 +181,8 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
     if new_height <= 0:
         new_height = 1
 
-    bottom_y = int(elbow_y - new_height)
-    bottom_x = int(elbow_x)
+    bottom_y = int(top_y_start + current_top_image.shape[0] - new_height)
+    bottom_x = int(top_x_start)
     if (wrist_y > elbow_y) : 
         return
     if (wrist_x < elbow_x) : 
@@ -191,9 +191,10 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
     new_dimensions = (new_width, new_height) 
     global current_bot_dimensions
     current_bot_dimensions = new_dimensions
-    new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
-    current_bot_image = new_image
+    if not (current_bot_image is None) :
+        new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
+        current_bot_image = new_image
     
     new_y_start = int(elbow_y - new_height)
     new_x_start = int(elbow_x)
