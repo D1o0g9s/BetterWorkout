@@ -16,7 +16,6 @@ accelerator.
 # Get images and the original width / height
 top_arm_image = cv2.imread('./images/top.png')
 top_arm_image_width = top_arm_image.shape[1]
-print(top_arm_image_width)
 top_arm_image_height = top_arm_image.shape[0]
 current_top_image = None
 
@@ -51,11 +50,6 @@ def showTopArm(frame):
     # Displays the current top image at the current top calculated location
     width = current_top_image.shape[1]
     height = current_top_image.shape[0]
-    print("top y start:", top_y_start, "top y end:", top_y_start + height)
-    print("top x start:", top_x_start, "top x end:", top_x_start + width)
-
-    print("curr top image shape:", current_top_image.shape)
-    print("frame image shape:", frame.shape)
     
     y_start = (top_y_start if ((top_y_start > 0) and (top_y_start < frame.shape[0])) else 0)
     y_end = top_y_start + height 
@@ -87,7 +81,7 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     new_image = cv2.resize(top_arm_image, new_dimensions)
 
     top_angle = angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
-    new_image = imutils.rotate(new_image, top_angle)
+    new_image = imutils.rotate_bound(new_image, top_angle)
     global current_top_image 
     current_top_image = new_image
 
@@ -102,9 +96,6 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
 
     original_x_end = shoulder_x + (0.5 * new_width) 
     original_y_end = shoulder_y + new_height
-
-    print("width_to_dec:", width_to_dec)
-    print("height_to_inc:", height_to_inc)
 
     new_x_start = int(original_x_start + width_to_dec) # Subtract the small bit that we decremented because of the rotation
     new_y_start = int(original_y_start - height_to_inc) # Add the small bit that we incremented because of the rotation
@@ -152,7 +143,6 @@ def updateBotArm():
     current_bot_image_index = (current_bot_image_index + 1) % NUM_BOT_IMAGES
     global bot_arm_image
     bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
-    print("current bot dimensions", current_bot_dimensions)
     new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
     if not(current_bot_image is None) :
@@ -166,7 +156,6 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
         new_width = 1
     if new_height <= 0:
         new_height = 1
-    print("new width:", new_width, "new height:", new_height)
     new_dimensions = (new_width, new_height) 
     global current_bot_dimensions
     current_bot_dimensions = new_dimensions
