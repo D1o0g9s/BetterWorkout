@@ -65,7 +65,7 @@ def showTopArm(frame):
     x_start = (top_x_start if ((top_x_start > 0) and (top_x_start < frame.shape[1])) else 0)
     x_end = top_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
-
+    print("height", height, "width", width)
     toPutImage = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
     toPutFrame = frame[y_start:y_end, x_start:x_end]
     
