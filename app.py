@@ -21,10 +21,10 @@ top_arm_image_height = top_arm_image.shape[0]
 current_top_image = None
 
 top_y_start = 0
-top_y_end = 0
+#top_y_end = 0
 
 top_x_start = 0
-top_x_end = 0
+#top_x_end = 0
 
 NUM_BOT_IMAGES = 79
 current_bot_image_index = 0
@@ -35,10 +35,10 @@ current_bot_dimensions = (1,1)
 current_bot_image = None
 
 bot_y_start = 0
-bot_y_end = 0
+#bot_y_end = 0
 
 bot_x_start = 0
-bot_x_end = 0
+#bot_x_end = 0
 
 def euclideanDistance(x1, y1, x2, y2) :
     return math.sqrt(math.pow(x1 - x2, 2) + math.pow(y1 - y2, 2))
@@ -84,10 +84,9 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     new_dimensions = (new_width, new_height)
 
     new_image = cv2.resize(top_arm_image, new_dimensions)
-
-    top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
-    print("top angle", top_angle)
-    new_image = imutils.rotate_bound(new_image, top_angle)
+    # top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
+    # print("top angle", top_angle)
+    #new_image = imutils.rotate_bound(new_image, top_angle)
     global current_top_image 
     current_top_image = new_image
 
@@ -106,23 +105,23 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     new_x_start = int(original_x_start + width_to_dec) # Subtract the small bit that we decremented because of the rotation
     new_y_start = int(original_y_start - height_to_inc) # Add the small bit that we incremented because of the rotation
 
-    # Calculate the height of the center bulk pieces
-    mid_width = new_height * math.sin(top_angle)
-    mid_height = new_height * math.cos(top_angle)
-    new_x_end = int(shoulder_x + mid_width + (0.5*new_width * math.cos(top_angle)))
-    new_y_end = int(shoulder_y + mid_height + height_to_inc)
+    # # Calculate the height of the center bulk pieces
+    # mid_width = new_height * math.sin(top_angle)
+    # mid_height = new_height * math.cos(top_angle)
+    # new_x_end = int(shoulder_x + mid_width + (0.5*new_width * math.cos(top_angle)))
+    # new_y_end = int(shoulder_y + mid_height + height_to_inc)
 
     global top_y_start
-    global top_y_end
+    #global top_y_end
 
     global top_x_start
-    global top_x_end
+    #global top_x_end
 
     top_y_start = new_y_start
-    top_y_end = new_y_end
+    #top_y_end = new_y_end
 
     top_x_start = new_x_start
-    top_x_end = new_x_end
+    #top_x_end = new_x_end
 
     print("top_y_start", top_y_start, "top_y_end", top_y_end, "top_x_start", top_x_start, "top_x_end", top_x_end)
 
@@ -162,33 +161,43 @@ def updateBotArm():
 
 def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y): 
     # Update the bottom image and location (doesn't actually display it though)
+
+
     new_width = int(euclideanDistance(wrist_x, wrist_y, elbow_x, elbow_y))
     new_height = int((new_width / bot_arm_image_width) * bot_arm_image_height)
     if new_width <= 0:
         new_width = 1
     if new_height <= 0:
         new_height = 1
+
+    bottom_y = int(elbow_y - new_height)
+    bottom_x = int(elbow_x)
+    if (wrist_y < elbow_y) : 
+        return
+    if (wrist_x < elbow_x) : 
+        return 
+    
     new_dimensions = (new_width, new_height) 
     global current_bot_dimensions
     current_bot_dimensions = new_dimensions
     new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
     current_bot_image = new_image
-
+    
     new_y_start = int(elbow_y - new_height)
     new_x_start = int(elbow_x)
-    new_y_end = int(elbow_y)
-    new_x_end = int(elbow_x + new_width)
+    #new_y_end = int(elbow_y)
+    #new_x_end = int(elbow_x + new_width)
 
     global bot_y_start
     global bot_x_start
-    global bot_y_end
-    global bot_x_end
+    #global bot_y_end
+    #global bot_x_end
 
-    bot_y_start = new_y_start
-    bot_x_start = new_x_start
-    bot_y_end = new_y_end
-    bot_x_end = new_x_end
+    bot_y_start = bottom_y
+    bot_x_start = bottom_x
+    #bot_y_end = new_y_end
+    #bot_x_end = new_x_end
 
 
 
@@ -220,7 +229,7 @@ def main():
 
             # loop detection
             while True:
-                time.sleep(0.1)
+                #time.sleep(0.1)
                 cnt += 1
                 frame = video_stream.read()
 
