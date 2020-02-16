@@ -64,7 +64,7 @@ def showTopArm(frame):
     x_start = (top_x_start if ((top_x_start > 0) and (top_x_start < frame.shape[1])) else 0)
     x_end = top_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
-    print("height", height, "width", width)
+    # print("height", height, "width", width)
 
     if (y_end-y_start != 0) and (x_end-x_start != 0) :
         toPutImage = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
@@ -188,7 +188,7 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
     #     new_height = 1
 
     bottom_y = int(top_y_start + current_top_image.shape[0] - current_bot_dimensions[1] + 20)
-    bottom_x = int(top_x_start + current_top_image.shape[1] - 20)
+    bottom_x = int(top_x_start + current_top_image.shape[1] - 30)
     if (wrist_y > elbow_y) : 
         return
     if (wrist_x < elbow_x) : 
@@ -315,7 +315,7 @@ def main():
 
             # loop detection
             while True:
-                time.sleep(0.05)
+                time.sleep(0.02)
                 cnt += 1
                 frame = video_stream.read()
 
@@ -324,9 +324,9 @@ def main():
                 time_elapsed += millis - prevMillis
 
                 # Grab updated image 
-                # if time_elapsed >= 33.3333:
-                #     time_elapsed = 0 
-                #     updateBotArm()
+                if time_elapsed >= 33.3333:
+                    time_elapsed = 0 
+                    updateBotArm()
 
                 # If there is a current image, display it! 
                 if not (current_bot_image is None):
