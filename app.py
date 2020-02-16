@@ -85,14 +85,14 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     original_x_end = shoulder_x + (0.5 * new_width) 
     original_y_end = shoulder_y + new_height
 
-    new_x_start = original_x_start + width_to_dec # Subtract the small bit that we decremented because of the rotation
-    new_y_start = original_y_start - height_to_inc # Add the small bit that we incremented because of the rotation
+    new_x_start = int(original_x_start + width_to_dec) # Subtract the small bit that we decremented because of the rotation
+    new_y_start = int(original_y_start - height_to_inc) # Add the small bit that we incremented because of the rotation
 
     # Calculate the height of the center bulk pieces
     mid_width = new_height * math.sin(top_angle)
     mid_height = new_height * math.cos(top_angle)
-    new_x_end = shoulder_x + mid_width + (0.5*new_width * math.cos(top_angle)) 
-    new_y_end = shoulder_y + mid_height + height_to_inc
+    new_x_end = int(shoulder_x + mid_width + (0.5*new_width * math.cos(top_angle)))
+    new_y_end = int(shoulder_y + mid_height + height_to_inc)
 
     global top_y_start
     global top_y_end
@@ -138,10 +138,10 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
     global current_bot_image
     current_bot_image = new_image
 
-    new_y_start = elbow_y - new_height
-    new_x_start = elbow_x
-    new_y_end = elbow_y
-    new_x_end = elbow_x + new_width
+    new_y_start = int(elbow_y - new_height)
+    new_x_start = int(elbow_x)
+    new_y_end = int(elbow_y)
+    new_x_end = int(elbow_x + new_width)
 
     global bot_y_start
     global bot_x_start
