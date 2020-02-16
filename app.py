@@ -81,6 +81,14 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     if new_height <= 0:
         new_height = 1
 
+    top_y = int(shoulder_y)
+    top_x = int(shoulder_x - (0.5 * new_width) )
+    if (elbow_y < shoulder_y) : 
+        return
+    if (elbow_x < shoulder_x) : 
+        return 
+    
+
     new_dimensions = (new_width, new_height)
 
     new_image = cv2.resize(top_arm_image, new_dimensions)
@@ -91,19 +99,19 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     current_top_image = new_image
 
     # Calculate the offsets we need to add to the image when we overlay the new image on
-    height_to_inc = abs((0.5 * new_width))# * math.sin(top_angle))
-    width_to_dec = abs((0.5 * new_width))# * math.sin(top_angle) * math.tan(top_angle))
+    #height_to_inc = abs((0.5 * new_width))# * math.sin(top_angle))
+    #width_to_dec = abs((0.5 * new_width))# * math.sin(top_angle) * math.tan(top_angle))
 
     ## Assumes increasing y is down, increasing x is right
 
-    original_x_start = shoulder_x - (0.5 * new_width) 
-    original_y_start = shoulder_y
+    # original_x_start = shoulder_x - (0.5 * new_width) 
+    # original_y_start = shoulder_y
 
     # original_x_end = shoulder_x + (0.5 * new_width) 
     # original_y_end = shoulder_y + new_height
 
-    new_x_start = int(original_x_start + width_to_dec) # Subtract the small bit that we decremented because of the rotation
-    new_y_start = int(original_y_start - height_to_inc) # Add the small bit that we incremented because of the rotation
+    new_x_start = int(top_x) # Subtract the small bit that we decremented because of the rotation
+    new_y_start = int(top_y) # Add the small bit that we incremented because of the rotation
 
     # # Calculate the height of the center bulk pieces
     # mid_width = new_height * math.sin(top_angle)
@@ -172,7 +180,7 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
 
     bottom_y = int(elbow_y - new_height)
     bottom_x = int(elbow_x)
-    if (wrist_y < elbow_y) : 
+    if (wrist_y > elbow_y) : 
         return
     if (wrist_x < elbow_x) : 
         return 
