@@ -208,7 +208,7 @@ def main():
             time.sleep(2.0)
             fps.start()
 
-            cnt = 4
+            cnt = 9
 
             # For debugging purposes
             prevMillis= 0
@@ -237,7 +237,7 @@ def main():
                     frame = showTopArm(frame)
                 
                 # Only calculate / update pose every 10 cycles 
-                if cnt == 5:
+                if cnt == 10:
                     cnt = 0
                     results = pose_estimator.estimate(frame)
                     # Generate text to display on streamer
@@ -249,50 +249,51 @@ def main():
                         # Only process pose of person 1
                         if (ind == 0) :
 
-                            right_wrist_y = pose.key_points["Right Wrist"][1]
-                            right_wrist_x = pose.key_points["Right Wrist"][0]
-                            right_elbow_y = pose.key_points["Right Elbow"][1]
-                            right_elbow_x = pose.key_points["Right Elbow"][0]
-                            right_shoulder_y = pose.key_points["Right Shoulder"][1]
-                            right_shoulder_x = pose.key_points["Right Shoulder"][0]
+                            # right_wrist_y = pose.key_points["Right Wrist"][1]
+                            # right_wrist_x = pose.key_points["Right Wrist"][0]
+                            # right_elbow_y = pose.key_points["Right Elbow"][1]
+                            # right_elbow_x = pose.key_points["Right Elbow"][0]
+                            # right_shoulder_y = pose.key_points["Right Shoulder"][1]
+                            # right_shoulder_x = pose.key_points["Right Shoulder"][0]
 
-                            user1_right_dict = dict()
-                            user1_right_dict["wrist_y"] = right_wrist_y
-                            user1_right_dict["elbow_y"] = right_elbow_y
-                            user1_right_dict["shoulder_y"] = right_shoulder_y
+                            # user1_right_dict = dict()
+                            # user1_right_dict["wrist_y"] = right_wrist_y
+                            # user1_right_dict["elbow_y"] = right_elbow_y
+                            # user1_right_dict["shoulder_y"] = right_shoulder_y
 
-                            user1_right_dict["wrist_x"] = right_wrist_x
-                            user1_right_dict["elbow_x"] = right_elbow_x
-                            user1_right_dict["shoulder_x"] = right_shoulder_x
+                            # user1_right_dict["wrist_x"] = right_wrist_x
+                            # user1_right_dict["elbow_x"] = right_elbow_x
+                            # user1_right_dict["shoulder_x"] = right_shoulder_x
+
+                            left_wrist_y = pose.key_points["Left Wrist"][1]
+                            left_wrist_x = pose.key_points["Left Wrist"][0]
+                            left_elbow_y = pose.key_points["Left Elbow"][1]
+                            left_elbow_x = pose.key_points["Left Elbow"][0]
+                            left_shoulder_y = pose.key_points["Left Shoulder"][1]
+                            left_shoulder_x = pose.key_points["Left Shoulder"][0]
+
+                            user1_dict = dict()
+                            user1_dict["wrist_y"] = [left_wrist_y]
+                            user1_dict["elbow_y"] = [left_elbow_y]
+                            user1_dict["shoulder_y"] = [left_shoulder_y]
+
+                            user1_dict["wrist_x"] = [left_wrist_x]
+                            user1_dict["elbow_x"] = [left_elbow_x]
+                            user1_dict["shoulder_x"] = [left_shoulder_x]
+
                             skip = False
                             for key in user1_right_dict.keys():
                                 if user1_right_dict[key] < 0 : 
                                     skip = True
                             if not skip: 
-                                updateTopArmImageAndLocation(right_shoulder_x, right_shoulder_y, right_elbow_x, right_elbow_y)
-                                updateBotArmImageAndLocation(right_wrist_x, right_wrist_y, right_elbow_x, right_elbow_y)
+                                updateTopArmImageAndLocation(user1_dict["shoulder_x"], user1_dict["shoulder_y"], user1_dict["elbow_x"], user1_dict["elbow_y"])
+                                updateBotArmImageAndLocation(user1_dict["wrist_x"], user1_dict["wrist_y"], user1_dict["elbow_x"], user1_dict["elbow_y"])
                             else :
-                                cnt = 4
-                            print("right arm data")
-                            print(user1_right_dict)
+                                cnt = 10
+                            print("one arm data")
+                            print(user1_dict)
 
-                            # left_wrist_y = pose.key_points["Left Wrist"][1]
-                            # left_wrist_x = pose.key_points["Left Wrist"][0]
-                            # left_elbow_y = pose.key_points["Left Elbow"][1]
-                            # left_elbow_x = pose.key_points["Left Elbow"][0]
-                            # left_shoulder_y = pose.key_points["Left Shoulder"][1]
-                            # left_shoulder_x = pose.key_points["Left Shoulder"][0]
-
-                            # user1_right_dict["timestamp"] = [millis]
-                                
-                            # user1_left_dict["timestamp"] = [millis]
-                            # user1_left_dict["wrist_y"] = [left_wrist_y]
-                            # user1_left_dict["elbow_y"] = [left_elbow_y]
-                            # user1_left_dict["shoulder_y"] = [left_shoulder_y]
-
-                            # user1_left_dict["wrist_x"] = [left_wrist_x]
-                            # user1_left_dict["elbow_x"] = [left_elbow_x]
-                            # user1_left_dict["shoulder_x"] = [left_shoulder_x]
+                            
 
                             # user1_right_df2 = pd.DataFrame.from_dict(user1_right_dict)
                             # #user1_right_df2.set_index('timestamp', inplace=True)
