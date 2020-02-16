@@ -31,7 +31,7 @@ current_bot_image_index = 0
 bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
 bot_arm_image_width = bot_arm_image.shape[1]
 bot_arm_image_height = bot_arm_image.shape[0]
-current_bot_dimensions = (0,0)
+current_bot_dimensions = (1,1)
 current_bot_image = None
 
 bot_y_start = 0
@@ -77,8 +77,8 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     current_top_image = new_image
 
     # Calculate the offsets we need to add to the image when we overlay the new image on
-    height_to_inc = (0.5 * new_width) * math.sin(top_angle)
-    width_to_dec = (0.5 * new_width) * math.sin(top_angle) * math.tan(top_angle)
+    height_to_inc = abs((0.5 * new_width) * math.sin(top_angle))
+    width_to_dec = abs((0.5 * new_width) * math.sin(top_angle) * math.tan(top_angle))
 
     ## Assumes increasing y is down, increasing x is right
 
