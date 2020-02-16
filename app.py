@@ -189,10 +189,10 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
 
     bottom_y = int(top_y_start + current_top_image.shape[0] - current_bot_dimensions[1] + 30)
     bottom_x = int(top_x_start + current_top_image.shape[1] - 50)
-    if (wrist_y > elbow_y) : 
-        return
-    if (wrist_x < elbow_x) : 
-        return 
+    # if (wrist_y > elbow_y) : 
+    #     return
+    # if (wrist_x < elbow_x) : 
+    #     return 
     
     # new_dimensions = (new_width, new_height) 
     # global current_bot_dimensions
