@@ -57,7 +57,16 @@ def showTopArm(frame):
     print("curr top image shape:", current_top_image.shape)
     print("frame image shape:", frame.shape)
     
-    frame[top_y_start:top_y_start + height, top_x_start:top_x_start + width] = current_top_image
+    y_start = (top_y_start if ((top_y_start > 0) and (top_y_start < frame.shape[0])) else 0)
+    y_end = top_y_start + height 
+    y_end = (y_end if ((y_end > 0) and (y_end < frame.shape[0])) else 0)
+
+
+    x_start = (top_x_start if ((top_x_start > 0) and (top_x_start < frame.shape[1])) else 0)
+    x_end = top_x_start + width
+    x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
+
+    frame[y_start:y_end, x_start:x_end] = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
     return frame
 
 
@@ -123,7 +132,17 @@ def showCurBotImage(frame):
     height = current_bot_image.shape[0]
     print("frame image shape:", frame.shape)
     print("current_bot_image:", current_bot_image.shape)
-    frame[bot_y_start:bot_y_start + height, bot_x_start:bot_x_start + width] = current_bot_image
+
+    y_start = (bot_y_start if ((bot_y_start > 0) and (bot_y_start < frame.shape[0])) else 0)
+    y_end = bot_y_start + height 
+    y_end = (y_end if ((y_end > 0) and (y_end < frame.shape[0])) else 0)
+
+
+    x_start = (bot_x_start if ((bot_x_start > 0) and (bot_x_start < frame.shape[1])) else 0)
+    x_end = bot_x_start + width
+    x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
+
+    frame[y_start:y_end, x_start:x_end] = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
     return frame
 
 def updateBotArm():
