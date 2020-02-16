@@ -306,7 +306,7 @@ def main():
             time.sleep(2.0)
             fps.start()
 
-            cnt = 95
+            cnt = 18
 
             # For debugging purposes
             prevMillis= 0
@@ -324,7 +324,7 @@ def main():
                 time_elapsed += millis - prevMillis
 
                 # Grab updated image 
-                if time_elapsed >= 33.3333:
+                if time_elapsed >= 33:
                     time_elapsed = 0 
                     updateBotArm()
 
@@ -335,7 +335,7 @@ def main():
                     frame = showTopArm(frame)
                 
                 # Only calculate / update pose every 10 cycles 
-                if cnt == 100:
+                if cnt == 20:
                     cnt = 0
                     global existingThread
                     if not (existingThread is None):
