@@ -241,7 +241,7 @@ def main():
                             user1_right_dict["elbow_x"] = right_elbow_x
                             user1_right_dict["shoulder_x"] = right_shoulder_x
                             skip = False
-                            for key in user1_right_dict.keys:
+                            for key in user1_right_dict.keys():
                                 if user1_right_dict[key] < 0 : 
                                     skip = True
                             if not skip: 
