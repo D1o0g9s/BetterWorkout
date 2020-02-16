@@ -19,8 +19,8 @@ accelerator.
 top_arm_image = cv2.imread('./images/top.png')
 top_arm_image_width = top_arm_image.shape[1]
 top_arm_image_height = top_arm_image.shape[0]
-ratio = 10
-current_top_dimensions = (top_arm_image_width//ratio, top_arm_image_height//ratio)
+top_ratio = 10
+current_top_dimensions = (top_arm_image_width//top_ratio, top_arm_image_height//top_ratio)
 current_top_image = cv2.resize(top_arm_image, current_top_dimensions)
 
 top_y_start = 0
@@ -28,13 +28,13 @@ top_y_start = 0
 
 top_x_start = 0
 #top_x_end = 0
-
+bot_ratio = 5
 NUM_BOT_IMAGES = 79
 current_bot_image_index = 0
 bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
 bot_arm_image_width = bot_arm_image.shape[1]
 bot_arm_image_height = bot_arm_image.shape[0]
-current_bot_dimensions = (bot_arm_image_width//ratio, bot_arm_image_width//ratio)
+current_bot_dimensions = (bot_arm_image_width//bot_ratio, bot_arm_image_width//bot_ratio)
 current_bot_image = cv2.resize(bot_arm_image, current_bot_dimensions)
 
 bot_y_start = 0
