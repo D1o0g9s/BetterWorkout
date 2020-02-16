@@ -52,7 +52,7 @@ def showTopArm(frame):
     width = current_top_image.shape[1]
     height = current_top_image.shape[0]
     print("curr top image shape:", current_top_image.shape)
-    frame[top_y_start:top_y_start - height, top_x_start:top_x_start + width] = current_top_image
+    frame[top_y_start:top_y_start + height, top_x_start:top_x_start + width] = current_top_image
     return frame
 
 
@@ -111,7 +111,9 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
 
 def showCurBotImage(frame):
     # Display the bottom image
-    frame[bot_y_start:bot_y_end, bot_x_start:bot_x_end] = current_bot_image
+    width = current_bot_image.shape[1]
+    height = current_bot_image.shape[0]
+    frame[bot_y_start:bot_y_start + height, bot_x_start:bot_x_start + width] = current_bot_image
     return frame
 
 def updateBotArm():
