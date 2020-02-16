@@ -348,6 +348,7 @@ def main():
                 fps.update()
 
                 if streamer.check_exit():
+                    
                     break
     finally:
         fps.stop()
@@ -355,6 +356,10 @@ def main():
         print("approx. FPS: {:.2f}".format(fps.compute_fps()))
 
         print("Program Ending")
+        
+        global existingThread
+        if not (existingThread is None):
+            existingThread.join()
 
 
 if __name__ == "__main__":
