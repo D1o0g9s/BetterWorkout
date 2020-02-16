@@ -84,23 +84,23 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     new_dimensions = (new_width, new_height)
 
     new_image = cv2.resize(top_arm_image, new_dimensions)
-    # top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
+    #top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
     # print("top angle", top_angle)
     #new_image = imutils.rotate_bound(new_image, top_angle)
     global current_top_image 
     current_top_image = new_image
 
     # Calculate the offsets we need to add to the image when we overlay the new image on
-    height_to_inc = abs((0.5 * new_width) * math.sin(top_angle))
-    width_to_dec = abs((0.5 * new_width) * math.sin(top_angle) * math.tan(top_angle))
+    height_to_inc = abs((0.5 * new_width))# * math.sin(top_angle))
+    width_to_dec = abs((0.5 * new_width))# * math.sin(top_angle) * math.tan(top_angle))
 
     ## Assumes increasing y is down, increasing x is right
 
     original_x_start = shoulder_x - (0.5 * new_width) 
     original_y_start = shoulder_y
 
-    original_x_end = shoulder_x + (0.5 * new_width) 
-    original_y_end = shoulder_y + new_height
+    # original_x_end = shoulder_x + (0.5 * new_width) 
+    # original_y_end = shoulder_y + new_height
 
     new_x_start = int(original_x_start + width_to_dec) # Subtract the small bit that we decremented because of the rotation
     new_y_start = int(original_y_start - height_to_inc) # Add the small bit that we incremented because of the rotation
@@ -123,7 +123,7 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     top_x_start = new_x_start
     #top_x_end = new_x_end
 
-    print("top_y_start", top_y_start, "top_y_end", top_y_end, "top_x_start", top_x_start, "top_x_end", top_x_end)
+    print("top_y_start", top_y_start, "top_x_start", top_x_start) #"top_y_end", top_y_end, "top_x_end", top_x_end)
 
 def showCurBotImage(frame):
     # Display the bottom image
@@ -139,7 +139,7 @@ def showCurBotImage(frame):
     x_end = bot_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
 
-    print("bot y_start:", y_start, "y_end", y_end, "x_start", x_start, "x_end", x_end)
+    print("bot y_start:", y_start, "x_start", x_start, "y_end", y_end,  "x_end", x_end)
     toPutImage = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
     #toPutFrame = frame[y_start:y_end, x_start:x_end]
 
@@ -198,6 +198,9 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
     bot_x_start = bottom_x
     #bot_y_end = new_y_end
     #bot_x_end = new_x_end
+
+    print("bot_y_start", bot_y_start, "bot_x_start", bot_x_start) 
+
 
 
 
