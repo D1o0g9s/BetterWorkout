@@ -53,9 +53,9 @@ def showTopArm(frame):
 
 def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y): 
     # Calculates the current top image
-    new_height = euclideanDistance(shoulder_x, shoulder_y, elbow_x, elbow_y)
+    new_height = int(euclideanDistance(shoulder_x, shoulder_y, elbow_x, elbow_y))
     scale_ratio = new_height / top_arm_image_height
-    new_width = scale_ratio * top_arm_image_width
+    new_width = int(scale_ratio * top_arm_image_width)
     new_dimensions = (new_width, new_height)
 
     new_image = cv2.resize(top_arm_image, new_dimensions)
@@ -115,8 +115,8 @@ def updateBotArm(frame):
 
 def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y): 
     # Update the bottom image and location (doesn't actually display it though)
-    new_width = euclideanDistance(wrist_x, wrist_y, elbow_x, elbow_y)
-    new_height = (new_width / bot_arm_image_width) * bot_arm_image_height
+    new_width = int(euclideanDistance(wrist_x, wrist_y, elbow_x, elbow_y))
+    new_height = int((new_width / bot_arm_image_width) * bot_arm_image_height)
     new_dimensions = (new_width, new_height) 
     global current_bot_dimensions
     current_bot_dimensions = new_dimensions
