@@ -88,6 +88,9 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     original_x_end = shoulder_x + (0.5 * new_width) 
     original_y_end = shoulder_y + new_height
 
+    print("width_to_dec:", width_to_dec)
+    print("height_to_inc:", height_to_inc)
+
     new_x_start = int(original_x_start + width_to_dec) # Subtract the small bit that we decremented because of the rotation
     new_y_start = int(original_y_start - height_to_inc) # Add the small bit that we incremented because of the rotation
 
