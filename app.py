@@ -4,6 +4,7 @@ import edgeiq
 import cv2
 import math
 import imutils
+import numpy as np
 """
 Use pose estimation to determine human poses in realtime. Human Pose returns
 a list of key points indicating joints that can be used for applications such
@@ -60,8 +61,12 @@ def showTopArm(frame):
     x_end = top_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
 
-    print("top y_start:", y_start, "y_end", y_end, "x_start", x_start, "x_end", x_end)
-    frame[y_start:y_end, x_start:x_end] = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
+    toPutImage = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
+    toPutFrame = frame[y_start:y_end, x_start:x_end]
+    
+    out = np.where(toPutImage == [0, 0, 0], toPutFrame, toPutImage)
+
+    frame[y_start:y_end, x_start:x_end] = out
     return frame
 
 
@@ -133,8 +138,12 @@ def showCurBotImage(frame):
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
 
     print("bot y_start:", y_start, "y_end", y_end, "x_start", x_start, "x_end", x_end)
+    toPutImage = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
+    toPutFrame = frame[y_start:y_end, x_start:x_end]
 
-    frame[y_start:y_end, x_start:x_end] = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
+    out = np.where(toPutImage == [0, 0, 0], toPutFrame, toPutImage)
+
+    frame[y_start:y_end, x_start:x_end] = out
     return frame
 
 def updateBotArm():
