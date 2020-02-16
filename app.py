@@ -16,6 +16,7 @@ accelerator.
 # Get images and the original width / height
 top_arm_image = cv2.imread('./images/top.png')
 top_arm_image_width = top_arm_image.shape[1]
+print(top_arm_image_width)
 top_arm_image_height = top_arm_image.shape[0]
 current_top_image = None
 
@@ -118,10 +119,11 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
     # Update the bottom image and location (doesn't actually display it though)
     new_width = int(euclideanDistance(wrist_x, wrist_y, elbow_x, elbow_y))
     new_height = int((new_width / bot_arm_image_width) * bot_arm_image_height)
+    print("new width:", new_width, "new height:", new_height)
     new_dimensions = (new_width, new_height) 
     global current_bot_dimensions
     current_bot_dimensions = new_dimensions
-    new_image = cv2.resize(bot_arm_image, new_dimensions)
+    new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
     current_bot_image = new_image
 
