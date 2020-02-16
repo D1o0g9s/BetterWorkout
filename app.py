@@ -273,13 +273,13 @@ def main():
                             left_shoulder_x = pose.key_points["Left Shoulder"][0]
 
                             user1_dict = dict()
-                            user1_dict["wrist_y"] = [left_wrist_y]
-                            user1_dict["elbow_y"] = [left_elbow_y]
-                            user1_dict["shoulder_y"] = [left_shoulder_y]
+                            user1_dict["wrist_y"] = left_wrist_y
+                            user1_dict["elbow_y"] = left_elbow_y
+                            user1_dict["shoulder_y"] = left_shoulder_y
 
-                            user1_dict["wrist_x"] = [left_wrist_x]
-                            user1_dict["elbow_x"] = [left_elbow_x]
-                            user1_dict["shoulder_x"] = [left_shoulder_x]
+                            user1_dict["wrist_x"] = left_wrist_x
+                            user1_dict["elbow_x"] = left_elbow_x
+                            user1_dict["shoulder_x"] = left_shoulder_x
 
                             skip = False
                             for key in user1_dict.keys():
