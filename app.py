@@ -51,10 +51,12 @@ def showTopArm(frame):
     # Displays the current top image at the current top calculated location
     width = current_top_image.shape[1]
     height = current_top_image.shape[0]
-    print("curr top image shape:", current_top_image.shape)
-    print("frame image shape:", frame.shape)
     print("top y start:", top_y_start, "top y end:", top_y_start + height)
     print("top x start:", top_x_start, "top x end:", top_x_start + width)
+
+    print("curr top image shape:", current_top_image.shape)
+    print("frame image shape:", frame.shape)
+    
     frame[top_y_start:top_y_start + height, top_x_start:top_x_start + width] = current_top_image
     return frame
 
@@ -129,7 +131,7 @@ def updateBotArm():
     current_bot_image_index = (current_bot_image_index + 1) % NUM_BOT_IMAGES
     global bot_arm_image
     bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
-    print(current_bot_dimensions)
+    print("current bot dimensions", current_bot_dimensions)
     new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
     global current_bot_image
     current_bot_image = new_image
@@ -195,6 +197,7 @@ def main():
 
             # loop detection
             while True:
+                time.sleep(0.1)
                 cnt += 1
                 frame = video_stream.read()
 
