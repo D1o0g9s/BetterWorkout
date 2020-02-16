@@ -282,8 +282,8 @@ def main():
                             user1_dict["shoulder_x"] = [left_shoulder_x]
 
                             skip = False
-                            for key in user1_right_dict.keys():
-                                if user1_right_dict[key] < 0 : 
+                            for key in user1_dict.keys():
+                                if user1_dict[key] < 0 : 
                                     skip = True
                             if not skip: 
                                 updateTopArmImageAndLocation(user1_dict["shoulder_x"], user1_dict["shoulder_y"], user1_dict["elbow_x"], user1_dict["elbow_y"])
