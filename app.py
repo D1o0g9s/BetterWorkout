@@ -3,6 +3,7 @@ import time
 import edgeiq
 import cv2
 import math
+import imutils
 """
 Use pose estimation to determine human poses in realtime. Human Pose returns
 a list of key points indicating joints that can be used for applications such
@@ -61,7 +62,7 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     new_image = cv2.resize(top_arm_image, new_dimensions)
 
     top_angle = angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
-    new_image = new_image.rotate(top_angle, expand=True)
+    new_image = imutils.rotate(new_image, top_angle)
     global current_top_image 
     current_top_image = new_image
 
