@@ -85,7 +85,7 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
 
     new_image = cv2.resize(top_arm_image, new_dimensions)
 
-    top_angle = angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
+    top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
     new_image = imutils.rotate_bound(new_image, top_angle)
     global current_top_image 
     current_top_image = new_image
