@@ -43,7 +43,7 @@ def euclideanDistance(x1, y1, x2, y2) :
 
 def angle(top_x, top_y, bot_x, bot_y):
     # Calculates the angle to rotate Top by
-    return math.degrees(math.tan(math.abs(top_x - bot_x) / math.abs(top_y - bot_y)))
+    return math.degrees(math.tan(abs(top_x - bot_x) / abs(top_y - bot_y)))
 
 def showTopArm(frame):
     # Displays the current top image at the current top calculated location
