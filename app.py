@@ -182,7 +182,7 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
         new_height = 1
 
     bottom_y = int(top_y_start + current_top_image.shape[0] - new_height)
-    bottom_x = int(top_x_start)
+    bottom_x = int(top_x_start + current_top_image.shape[1])
     if (wrist_y > elbow_y) : 
         return
     if (wrist_x < elbow_x) : 
@@ -196,8 +196,8 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
         new_image = cv2.resize(bot_arm_image, current_bot_dimensions)
         current_bot_image = new_image
     
-    new_y_start = int(elbow_y - new_height)
-    new_x_start = int(elbow_x)
+    # new_y_start = int(elbow_y - new_height)
+    # new_x_start = int(elbow_x)
     #new_y_end = int(elbow_y)
     #new_x_end = int(elbow_x + new_width)
 
