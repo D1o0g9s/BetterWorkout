@@ -117,6 +117,7 @@ def showCurBotImage(frame):
     # Display the bottom image
     width = current_bot_image.shape[1]
     height = current_bot_image.shape[0]
+    print("frame image shape:", frame.shape)
     frame[bot_y_start:bot_y_start + height, bot_x_start:bot_x_start + width] = current_bot_image
     return frame
 
