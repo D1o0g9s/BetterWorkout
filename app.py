@@ -28,7 +28,7 @@ top_y_start = 0
 
 top_x_start = 0
 #top_x_end = 0
-bot_ratio = 3
+bot_ratio = 4
 NUM_BOT_IMAGES = 79
 current_bot_image_index = 0
 bot_arm_image = cv2.imread('./images/arm move 2/arm move_00000_000'+"{:0>2d}".format(current_bot_image_index)+'.png')
@@ -66,12 +66,13 @@ def showTopArm(frame):
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
     print("height", height, "width", width)
 
-    toPutImage = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
-    toPutFrame = frame[y_start:y_end, x_start:x_end]
-    
-    out = np.where(toPutImage == [0, 0, 0], toPutFrame, toPutImage)
+    if (y_end-y_start != 0) and (x_end-x_start != 0) :
+        toPutImage = current_top_image[0:(y_end-y_start),0:(x_end-x_start)]
+        toPutFrame = frame[y_start:y_end, x_start:x_end]
+        
+        out = np.where(toPutImage == [0, 0, 0], toPutFrame, toPutImage)
 
-    frame[y_start:y_end, x_start:x_end] = out #toPutImage
+        frame[y_start:y_end, x_start:x_end] = out #toPutImage
     return frame
 
 
@@ -153,13 +154,15 @@ def showCurBotImage(frame):
     x_end = bot_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
 
-    #print("bot y_start:", y_start, "x_start", x_start, "y_end", y_end,  "x_end", x_end)
-    toPutImage = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
-    toPutFrame = frame[y_start:y_end, x_start:x_end]
 
-    out = np.where(toPutImage == [0, 0, 0], toPutFrame, toPutImage)
+    if (y_end-y_start != 0) and (x_end-x_start != 0) :
+        #print("bot y_start:", y_start, "x_start", x_start, "y_end", y_end,  "x_end", x_end)
+        toPutImage = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
+        toPutFrame = frame[y_start:y_end, x_start:x_end]
 
-    frame[y_start:y_end, x_start:x_end] = out
+        out = np.where(toPutImage == [0, 0, 0], toPutFrame, toPutImage)
+
+        frame[y_start:y_end, x_start:x_end] = out
     return frame
 
 def updateBotArm():
@@ -184,8 +187,8 @@ def updateBotArmImageAndLocation(wrist_x, wrist_y, elbow_x, elbow_y):
     # if new_height <= 0:
     #     new_height = 1
 
-    bottom_y = int(top_y_start + current_top_image.shape[0] - current_bot_dimensions[1])
-    bottom_x = int(top_x_start + current_top_image.shape[1])
+    bottom_y = int(top_y_start + current_top_image.shape[0] - current_bot_dimensions[1] + 20)
+    bottom_x = int(top_x_start + current_top_image.shape[1] - 20)
     if (wrist_y > elbow_y) : 
         return
     if (wrist_x < elbow_x) : 
