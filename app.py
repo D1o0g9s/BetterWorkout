@@ -226,13 +226,13 @@ def main():
                 time_elapsed += millis - prevMillis
 
                 # Grab updated image 
-                if time_elapsed >= 33.3333:
-                    time_elapsed = 0 
-                    updateBotArm()
+                # if time_elapsed >= 33.3333:
+                #     time_elapsed = 0 
+                #     updateBotArm()
 
                 # If there is a current image, display it! 
-                if not (current_bot_image is None):
-                    frame = showCurBotImage(frame)
+                # if not (current_bot_image is None):
+                #     frame = showCurBotImage(frame)
                 if not (current_top_image is None):
                     frame = showTopArm(frame)
                 
@@ -287,7 +287,7 @@ def main():
                                     skip = True
                             if not skip: 
                                 updateTopArmImageAndLocation(user1_dict["shoulder_x"], user1_dict["shoulder_y"], user1_dict["elbow_x"], user1_dict["elbow_y"])
-                                updateBotArmImageAndLocation(user1_dict["wrist_x"], user1_dict["wrist_y"], user1_dict["elbow_x"], user1_dict["elbow_y"])
+                                # updateBotArmImageAndLocation(user1_dict["wrist_x"], user1_dict["wrist_y"], user1_dict["elbow_x"], user1_dict["elbow_y"])
                             else :
                                 cnt = 10
                             print("one arm data")
