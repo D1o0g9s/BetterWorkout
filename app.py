@@ -86,6 +86,7 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
     new_image = cv2.resize(top_arm_image, new_dimensions)
 
     top_angle = -angle(shoulder_x, shoulder_y, elbow_x, elbow_y)
+    print("top angle", top_angle)
     new_image = imutils.rotate_bound(new_image, top_angle)
     global current_top_image 
     current_top_image = new_image
@@ -122,6 +123,8 @@ def updateTopArmImageAndLocation(shoulder_x, shoulder_y, elbow_x, elbow_y):
 
     top_x_start = new_x_start
     top_x_end = new_x_end
+
+    print("top_y_start", top_y_start, "top_y_end", top_y_end, "top_x_start", top_x_start, "top_x_end", top_x_end)
 
 def showCurBotImage(frame):
     # Display the bottom image
