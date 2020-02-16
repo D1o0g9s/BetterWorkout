@@ -232,7 +232,7 @@ def main():
 
             # loop detection
             while True:
-                #time.sleep(0.1)
+                time.sleep(0.05)
                 cnt += 1
                 frame = video_stream.read()
 
