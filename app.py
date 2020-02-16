@@ -150,7 +150,7 @@ def showCurBotImage(frame):
     x_end = bot_x_start + width
     x_end = (x_end if ((x_end > 0) and (x_end < frame.shape[1])) else 0)
 
-    print("bot y_start:", y_start, "x_start", x_start, "y_end", y_end,  "x_end", x_end)
+    #print("bot y_start:", y_start, "x_start", x_start, "y_end", y_end,  "x_end", x_end)
     toPutImage = current_bot_image[0:(y_end-y_start),0:(x_end-x_start)]
     toPutFrame = frame[y_start:y_end, x_start:x_end]
 
